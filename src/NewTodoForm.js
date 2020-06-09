@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 
 class NewTodoForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: "",
-    };
-  }
-
+  state = {
+    text: "",
+  };
   handleChange = event => {
     this.setState({ text: event.target.value });
   };
@@ -19,13 +15,10 @@ class NewTodoForm extends Component {
   };
 
   render() {
+    const { text } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.text}
-          onChange={this.handleChange}
-        />
+        <input type="text" value={text} onChange={this.handleChange} />
         <button>Add Todo</button>
       </form>
     );

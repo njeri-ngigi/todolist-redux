@@ -4,28 +4,25 @@ import TodoList from "./TodoList";
 import "./App.css";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [
-        {
-          id: id(),
-          text: "Learn Redux",
-          completed: true,
-        },
-        {
-          id: id(),
-          text: "Master Redux",
-          completed: false,
-        },
-        {
-          id: id(),
-          text: "Learn Mobx",
-          completed: false,
-        },
-      ],
-    };
-  }
+  state = {
+    todos: [
+      {
+        id: id(),
+        text: "Learn Redux",
+        completed: true,
+      },
+      {
+        id: id(),
+        text: "Master Redux",
+        completed: false,
+      },
+      {
+        id: id(),
+        text: "Learn Mobx",
+        completed: false,
+      },
+    ],
+  };
 
   addTodo = text => {
     const newTodo = { id: id(), text, completed: false };

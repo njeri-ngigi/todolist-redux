@@ -23,15 +23,12 @@ class Todo extends Component {
   };
 
   render() {
+    const { value, isEditing } = this.state;
     const { id, text, completed, deleteTodo, toggleComplete } = this.props;
 
-    return this.state.isEditing ? (
+    return isEditing ? (
       <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
+        <input type="text" value={value} onChange={this.handleChange} />
       </form>
     ) : (
       <div className="Todo">
