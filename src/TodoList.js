@@ -5,7 +5,13 @@ import "./TodoList.css";
 
 class TodoList extends Component {
   render() {
-    const { todos, addTodo, deleteTodo, toggleComplete } = this.props;
+    const {
+      todos,
+      addTodo,
+      deleteTodo,
+      toggleComplete,
+      updateTodo,
+    } = this.props;
     return (
       <div className="TodoList">
         <h1>
@@ -18,6 +24,7 @@ class TodoList extends Component {
               {...todo}
               deleteTodo={deleteTodo}
               toggleComplete={toggleComplete}
+              updateTodo={updateTodo}
             />
           ))}
         </ul>

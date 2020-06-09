@@ -45,6 +45,13 @@ class App extends Component {
     this.setState({ todos });
   };
 
+  updateTodo = (id, text) => {
+    const todos = this.state.todos.map(todo =>
+      todo.id === id ? { ...todo, text } : todo
+    );
+    this.setState({ todos });
+  };
+
   render() {
     return (
       <div className="App">
@@ -53,6 +60,7 @@ class App extends Component {
           addTodo={this.addTodo}
           deleteTodo={this.deleteTodo}
           toggleComplete={this.toggleComplete}
+          updateTodo={this.updateTodo}
         />
       </div>
     );
