@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import id from "uuid/dist/v4";
-import TodoList from "./TodoList";
+import TodoList from "../components/TodoList";
 import "./App.css";
 
 class App extends Component {
