@@ -4,29 +4,46 @@ import { DELETE_TODO } from "./constants";
 import { TOGGLE_COMPLETE } from "./constants";
 import { UPDATE_TODO } from "./constants";
 
-const todos = [];
+const initialState = {
+  todos: [],
+};
 
-export const reducer = (state = todos, action) => {
+export const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
-      return [
+      return {
         ...state,
-        { id: id(), text: action.payload.text, completed: false },
-      ];
+        todos: [
+          ...state.todos,
+          { id: id(), text: action.payload, completed: false },
+        ],
+      };
     case DELETE_TODO:
-      return state.filter(todo => todo.id !== action.payload);
+      return {
+        ...state,
+        todos: state.todos.filter(todo => todo.id !== action.payload),
+      };
+
     case TOGGLE_COMPLETE:
-      return state.map(todo =>
-        todo.id === action.payload
-          ? { ...todo, completed: !todo.completed }
-          : todo
-      );
+      return {
+        ...state,
+        todos: state.todos.map(todo =>
+          todo.id === action.payload
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        ),
+      };
+
     case UPDATE_TODO:
-      return state.map(todo =>
-        todo.id === action.payload.id
-          ? { ...todo, text: action.payload.text }
-          : todo
-      );
+      return {
+        ...state,
+        todos: state.todos.map(todo =>
+          todo.id === action.payload.id
+            ? { ...todo, text: action.payload.text }
+            : todo
+        ),
+      };
+
     default:
       return state;
   }
