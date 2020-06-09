@@ -5,7 +5,7 @@ import "./TodoList.css";
 
 class TodoList extends Component {
   render() {
-    const { todos, addTodo } = this.props;
+    const { todos, addTodo, deleteTodo, toggleComplete } = this.props;
     return (
       <div className="TodoList">
         <h1>
@@ -13,7 +13,12 @@ class TodoList extends Component {
         </h1>
         <ul>
           {todos.map(todo => (
-            <Todo key={todo.id} {...todo} />
+            <Todo
+              key={todo.id}
+              {...todo}
+              deleteTodo={deleteTodo}
+              toggleComplete={toggleComplete}
+            />
           ))}
         </ul>
         <NewTodoForm addTodo={addTodo} />

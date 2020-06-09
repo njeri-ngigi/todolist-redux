@@ -28,15 +28,32 @@ class App extends Component {
   }
 
   addTodo = text => {
-    const newTodo = { id: id(), text: text, completed: false };
-    const updatedTodos = [...this.state.todos, newTodo];
-    this.setState({ todos: updatedTodos });
+    const newTodo = { id: id(), text, completed: false };
+    const todos = [...this.state.todos, newTodo];
+    this.setState({ todos });
+  };
+
+  deleteTodo = id => {
+    const todos = this.state.todos.filter(todo => todo.id !== id);
+    this.setState({ todos });
+  };
+
+  toggleComplete = id => {
+    const todos = this.state.todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+    this.setState({ todos });
   };
 
   render() {
     return (
       <div className="App">
-        <TodoList todos={this.state.todos} addTodo={this.addTodo} />
+        <TodoList
+          todos={this.state.todos}
+          addTodo={this.addTodo}
+          deleteTodo={this.deleteTodo}
+          toggleComplete={this.toggleComplete}
+        />
       </div>
     );
   }
