@@ -8,7 +8,6 @@ import * as serviceWorker from "./serviceWorker";
 import { todoReducer } from "./reducers";
 
 const store = createStore(todoReducer);
-console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

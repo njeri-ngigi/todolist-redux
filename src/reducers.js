@@ -5,7 +5,23 @@ import { TOGGLE_COMPLETE } from "./constants";
 import { UPDATE_TODO } from "./constants";
 
 const initialState = {
-  todos: [],
+  todos: [
+    {
+      id: id(),
+      text: "Learn Redux",
+      completed: true,
+    },
+    {
+      id: id(),
+      text: "Master Redux",
+      completed: false,
+    },
+    {
+      id: id(),
+      text: "Learn Mobx",
+      completed: false,
+    },
+  ],
 };
 
 export const todoReducer = (state = initialState, action) => {

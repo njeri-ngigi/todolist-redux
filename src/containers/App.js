@@ -1,67 +1,49 @@
 import React, { Component } from "react";
-import id from "uuid/dist/v4";
+import { connect } from "react-redux";
 import TodoList from "../components/TodoList";
 import "./App.css";
 
-class App extends Component {
-  state = {
-    todos: [
-      {
-        id: id(),
-        text: "Learn Redux",
-        completed: true,
-      },
-      {
-        id: id(),
-        text: "Master Redux",
-        completed: false,
-      },
-      {
-        id: id(),
-        text: "Learn Mobx",
-        completed: false,
-      },
-    ],
+import { addTodo } from "../actions";
+import { deleteTodo } from "../actions";
+import { toggleComplete } from "../actions";
+import { updateTodo } from "../actions";
+
+const mapStateToProps = state => {
+  return {
+    todos: state.todos,
   };
+};
 
-  // addTodo = text => {
-  //   const newTodo = { id: id(), text, completed: false };
-  //   const todos = [...this.state.todos, newTodo];
-  //   this.setState({ todos });
-  // };
+const mapDispatchToProps = dispatch => {
+  return {
+    addTodo: text => dispatch(addTodo(text)),
+    deleteTodo: id => dispatch(deleteTodo(id)),
+    toggleComplete: id => dispatch(toggleComplete(id)),
+    updateTodo: (id, text) => dispatch(updateTodo(id, text)),
+  };
+};
 
-  // deleteTodo = id => {
-  //   const todos = this.state.todos.filter(todo => todo.id !== id);
-  //   this.setState({ todos });
-  // };
-
-  // toggleComplete = id => {
-  //   const todos = this.state.todos.map(todo =>
-  //     todo.id === id ? { ...todo, completed: !todo.completed } : todo
-  //   );
-  //   this.setState({ todos });
-  // };
-
-  // updateTodo = (id, text) => {
-  //   const todos = this.state.todos.map(todo =>
-  //     todo.id === id ? { ...todo, text } : todo
-  //   );
-  //   this.setState({ todos });
-  // };
-
+class App extends Component {
   render() {
+    const {
+      todos,
+      addTodo,
+      deleteTodo,
+      toggleComplete,
+      updateTodo,
+    } = this.props;
     return (
       <div className="App">
         <TodoList
-          todos={this.state.todos}
-          addTodo={this.addTodo}
-          deleteTodo={this.deleteTodo}
-          toggleComplete={this.toggleComplete}
-          updateTodo={this.updateTodo}
+          todos={todos}
+          addTodo={addTodo}
+          deleteTodo={deleteTodo}
+          toggleComplete={toggleComplete}
+          updateTodo={updateTodo}
         />
       </div>
     );
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
