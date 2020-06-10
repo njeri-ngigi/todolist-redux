@@ -19,7 +19,6 @@ class NewTodoForm extends Component {
     event.preventDefault();
     if (!this.props.text) return;
     this.props.addTodo(this.props.text);
-    this.setState({ text: "" });
   };
 
   render() {

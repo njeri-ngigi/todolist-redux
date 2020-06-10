@@ -27,7 +27,7 @@ const initialState = {
   ],
 };
 
-export const todoReducer = (state = initialState, action = {}) => {
+export const todosReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case ADDED_TODO:
       return {

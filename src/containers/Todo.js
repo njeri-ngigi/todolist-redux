@@ -12,19 +12,19 @@ class Todo extends Component {
     };
   }
 
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     this.props.updateTodo(this.props.id, this.state.value);
     this.setState({ value: "", isEditing: false });
   };
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-  };
-
   render() {
-    const { value, isEditing } = this.state;
     const { id, text, completed, deleteTodo, toggleComplete } = this.props;
+    const { value, isEditing } = this.state;
 
     return isEditing ? (
       <form onSubmit={this.handleSubmit}>
