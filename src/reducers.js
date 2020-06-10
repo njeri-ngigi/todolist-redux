@@ -1,8 +1,11 @@
 import id from "uuid/dist/v4";
-import { ADD_TODO } from "./constants";
-import { DELETE_TODO } from "./constants";
-import { TOGGLE_COMPLETE } from "./constants";
-import { UPDATE_TODO } from "./constants";
+import {
+  ADDED_TODO,
+  DELETE_TODO,
+  TOGGLE_COMPLETE,
+  UPDATE_TODO,
+  ADDING_NEW_TODO,
+} from "./constants";
 
 const initialState = {
   todos: [
@@ -24,9 +27,9 @@ const initialState = {
   ],
 };
 
-export const todoReducer = (state = initialState, action) => {
+export const todoReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case ADD_TODO:
+    case ADDED_TODO:
       return {
         ...state,
         todos: [
@@ -60,6 +63,19 @@ export const todoReducer = (state = initialState, action) => {
         ),
       };
 
+    default:
+      return state;
+  }
+};
+
+const initialStateNewTodo = {
+  text: "",
+};
+
+export const newTodoReducer = (state = initialStateNewTodo, action = {}) => {
+  switch (action.type) {
+    case ADDING_NEW_TODO:
+      return Object.assign({}, state, { text: action.payload });
     default:
       return state;
   }

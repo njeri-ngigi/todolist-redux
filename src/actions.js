@@ -1,10 +1,13 @@
-import { ADD_TODO } from "./constants";
-import { DELETE_TODO } from "./constants";
-import { TOGGLE_COMPLETE } from "./constants";
-import { UPDATE_TODO } from "./constants";
+import {
+  ADDED_TODO,
+  DELETE_TODO,
+  TOGGLE_COMPLETE,
+  UPDATE_TODO,
+  ADDING_NEW_TODO,
+} from "./constants";
 
 export const addTodo = text => ({
-  type: ADD_TODO,
+  type: ADDED_TODO,
   payload: text,
 });
 
@@ -24,4 +27,9 @@ export const updateTodo = (id, text) => ({
     id,
     text,
   },
+});
+
+export const addingTodo = text => ({
+  type: ADDING_NEW_TODO,
+  payload: text,
 });

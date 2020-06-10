@@ -1,29 +1,36 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addingTodo } from "../actions";
+
+const mapStateToProps = state => {
+  return {
+    text: state.newTodo.text,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleChange: event => dispatch(addingTodo(event.target.value)),
+  };
+};
 
 class NewTodoForm extends Component {
-  state = {
-    text: "",
-  };
-  handleChange = event => {
-    this.setState({ text: event.target.value });
-  };
-
   handleSubmit = event => {
     event.preventDefault();
-    if (!this.state.text) return;
-    this.props.addTodo(this.state.text);
+    if (!this.props.text) return;
+    this.props.addTodo(this.props.text);
     this.setState({ text: "" });
   };
 
   render() {
-    const { text } = this.state;
+    const { text, handleChange } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" value={text} onChange={this.handleChange} />
+        <input type="text" value={text} onChange={handleChange} />
         <button>Add Todo</button>
       </form>
     );
   }
 }
 
-export default NewTodoForm;
+export default connect(mapStateToProps, mapDispatchToProps)(NewTodoForm);
