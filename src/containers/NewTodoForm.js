@@ -10,6 +10,7 @@ class NewTodoForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    if (!this.state.text) return;
     this.props.addTodo(this.state.text);
     this.setState({ text: "" });
   };
