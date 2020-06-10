@@ -19,7 +19,7 @@ class Todo extends PureComponent {
   handleSubmit = event => {
     event.preventDefault();
     this.props.updateTodo(this.props.id, this.state.value);
-    this.setState({ value: "", isEditing: false });
+    this.setState({ isEditing: false });
   };
 
   render() {

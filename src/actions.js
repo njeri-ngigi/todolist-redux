@@ -4,6 +4,7 @@ import {
   TOGGLE_COMPLETE,
   UPDATE_TODO,
   ADDING_NEW_TODO,
+  SUBMIT,
 } from "./constants";
 
 export const addTodo = text => ({
@@ -33,3 +34,5 @@ export const addingTodo = text => ({
   type: ADDING_NEW_TODO,
   payload: text,
 });
+
+export const submit = () => ({ type: SUBMIT });

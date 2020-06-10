@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addingTodo } from "../actions";
+import { addingTodo, submit } from "../actions";
 
 const mapStateToProps = state => {
   return {
@@ -11,6 +11,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     handleChange: event => dispatch(addingTodo(event.target.value)),
+    submit: () => dispatch(submit()),
   };
 };
 
@@ -19,6 +20,7 @@ class NewTodoForm extends Component {
     event.preventDefault();
     if (!this.props.text) return;
     this.props.addTodo(this.props.text);
+    this.props.submit();
   };
 
   render() {

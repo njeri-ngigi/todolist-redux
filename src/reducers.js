@@ -5,6 +5,7 @@ import {
   TOGGLE_COMPLETE,
   UPDATE_TODO,
   ADDING_NEW_TODO,
+  SUBMIT,
 } from "./constants";
 
 const initialState = {
@@ -76,6 +77,8 @@ export const newTodoReducer = (state = initialStateNewTodo, action = {}) => {
   switch (action.type) {
     case ADDING_NEW_TODO:
       return Object.assign({}, state, { text: action.payload });
+    case SUBMIT:
+      return Object.assign({}, state, { text: "" });
     default:
       return state;
   }

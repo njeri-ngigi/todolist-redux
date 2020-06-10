@@ -16,7 +16,6 @@ const rootReducer = combineReducers({
 });
 
 const store = createStore(rootReducer, applyMiddleware(logger));
-console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
